@@ -10,7 +10,7 @@ export class OrdersService {
     return this.ordersRepository.create(request);
   }
 
-  async getOrders() {
+  async getOrders() { 
     return this.ordersRepository.find({});
   }
 }
