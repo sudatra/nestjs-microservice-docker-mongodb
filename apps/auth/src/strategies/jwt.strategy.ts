@@ -4,6 +4,7 @@ import { PassportStrategy } from "@nestjs/passport";
 import { ExtractJwt, Strategy } from "passport-jwt";
 import { TokenPayload } from "../auth.service";
 import { Types } from "mongoose";
+import { UsersService } from "../users/users.service";
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
@@ -21,7 +22,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     })
   }
 
-  async validate({ userId }): TokenPayload {
+  async validate({ userId }): Promise<TokenPayload> {
     try {
       return await this.usersService.getUser({
         _id: new Types.ObjectId(userId)
