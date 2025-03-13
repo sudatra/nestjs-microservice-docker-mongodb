@@ -1,3 +1,4 @@
+
 FROM node:alpine As development
 
 WORKDIR /usr/src/app
@@ -8,7 +9,7 @@ RUN npm install --legacy-peer-deps
 
 COPY . .
 
-RUN npm run build
+RUN npm run build auth
 
 FROM node:alpine as production
 
@@ -25,4 +26,4 @@ COPY . .
 
 COPY --from=development /usr/src/app/dist ./dist
 
-CMD ["node", "dist/apps/billing/main"]
+CMD ["node", "dist/apps/auth/main"]
